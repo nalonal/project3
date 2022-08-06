@@ -112,16 +112,28 @@ services:
     networks:
       - gcp
   
+  # kowl:
+  #   container_name: sp3_kowl
+  #   image: quay.io/cloudhut/kowl:v1.4.0
+  #   restart: on-failure
+  #   hostname: kowl
+  #   volumes:
+  #     - ./config.yaml:/etc/kowl/config.yaml
+  #   ports:
+  #     - "10003:8080"
+  #   entrypoint: ./kowl --config.filepath=/etc/kowl/config.yaml
+  #   depends_on:
+  #     - kafka
+  #   networks:
+  #     - gcp
+  
   kowl:
+    image: quay.io/cloudhut/kowl:latest
     container_name: sp3_kowl
-    image: quay.io/cloudhut/kowl:v1.4.0
-    restart: on-failure
-    hostname: kowl
-    volumes:
-      - ./config.yaml:/etc/kowl/config.yaml
+    environment:
+      - KAFKA_BROKERS=kafka:9092
     ports:
-      - "10003:8080"
-    entrypoint: ./kowl --config.filepath=/etc/kowl/config.yaml
+      - 10003:8080
     depends_on:
       - kafka
     networks:
