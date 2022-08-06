@@ -1,0 +1,27 @@
+[2022-08-03 00:45:09,709] {taskinstance.py:826} INFO - Dependencies all met for <TaskInstance: penjadwalan.dapat_suhu 2022-08-02T18:28:00+00:00 [queued]>
+[2022-08-03 00:45:09,763] {taskinstance.py:826} INFO - Dependencies all met for <TaskInstance: penjadwalan.dapat_suhu 2022-08-02T18:28:00+00:00 [queued]>
+[2022-08-03 00:45:09,767] {taskinstance.py:1017} INFO - 
+--------------------------------------------------------------------------------
+[2022-08-03 00:45:09,771] {taskinstance.py:1018} INFO - Starting attempt 1 of 1
+[2022-08-03 00:45:09,772] {taskinstance.py:1019} INFO - 
+--------------------------------------------------------------------------------
+[2022-08-03 00:45:09,794] {taskinstance.py:1038} INFO - Executing <Task(PythonOperator): dapat_suhu> on 2022-08-02T18:28:00+00:00
+[2022-08-03 00:45:09,800] {standard_task_runner.py:51} INFO - Started process 25531 to run task
+[2022-08-03 00:45:09,815] {standard_task_runner.py:75} INFO - Running: ['airflow', 'tasks', 'run', 'penjadwalan', 'dapat_suhu', '2022-08-02T18:28:00+00:00', '--job-id', '241', '--pool', 'default_pool', '--raw', '--subdir', 'DAGS_FOLDER/penjadwalan.py', '--cfg-path', '/tmp/tmp3fbv4xdw']
+[2022-08-03 00:45:09,834] {standard_task_runner.py:76} INFO - Job 241: Subtask dapat_suhu
+[2022-08-03 00:45:10,025] {logging_mixin.py:103} INFO - Running <TaskInstance: penjadwalan.dapat_suhu 2022-08-02T18:28:00+00:00 [running]> on host b4dcda255553
+[2022-08-03 00:45:10,158] {taskinstance.py:1232} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=airflow
+AIRFLOW_CTX_DAG_ID=penjadwalan
+AIRFLOW_CTX_TASK_ID=dapat_suhu
+AIRFLOW_CTX_EXECUTION_DATE=2022-08-02T18:28:00+00:00
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2022-08-02T18:28:00+00:00
+[2022-08-03 00:45:13,559] {logging_mixin.py:103} INFO - {'kota': 'Bali', 'cuaca': 'Clouds', 'cuaca_deskripsi': 'overcast clouds', 'temperatur': 298.28, 'waktu': '2022-08-03T00:45:13.559382'}
+[2022-08-03 00:45:16,209] {logging_mixin.py:103} INFO - {'kota': 'Lombok', 'cuaca': 'Clouds', 'cuaca_deskripsi': 'overcast clouds', 'temperatur': 295.51, 'waktu': '2022-08-03T00:45:16.209226'}
+[2022-08-03 00:45:16,738] {logging_mixin.py:103} INFO - {'kota': 'Labuan Bajo', 'cuaca': 'Clouds', 'cuaca_deskripsi': 'scattered clouds', 'temperatur': 300.93, 'waktu': '2022-08-03T00:45:16.737957'}
+[2022-08-03 00:45:17,558] {logging_mixin.py:103} INFO - {'kota': 'Bogor', 'cuaca': 'Rain', 'cuaca_deskripsi': 'light rain', 'temperatur': 300.87, 'waktu': '2022-08-03T00:45:17.557889'}
+[2022-08-03 00:45:18,597] {logging_mixin.py:103} INFO - {'kota': 'Bandung', 'cuaca': 'Clouds', 'cuaca_deskripsi': 'scattered clouds', 'temperatur': 296.92, 'waktu': '2022-08-03T00:45:18.597240'}
+[2022-08-03 00:45:18,613] {python.py:118} INFO - Done. Returned value was: None
+[2022-08-03 00:45:18,709] {taskinstance.py:1142} INFO - Marking task as SUCCESS. dag_id=penjadwalan, task_id=dapat_suhu, execution_date=20220802T182800, start_date=20220803T004509, end_date=20220803T004518
+[2022-08-03 00:45:19,206] {taskinstance.py:1195} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2022-08-03 00:45:19,309] {local_task_job.py:118} INFO - Task exited with return code 0

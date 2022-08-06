@@ -1,0 +1,27 @@
+[2022-08-02 15:40:02,689] {taskinstance.py:826} INFO - Dependencies all met for <TaskInstance: pokea.say_Hi 2022-08-02T15:30:00+00:00 [queued]>
+[2022-08-02 15:40:02,730] {taskinstance.py:826} INFO - Dependencies all met for <TaskInstance: pokea.say_Hi 2022-08-02T15:30:00+00:00 [queued]>
+[2022-08-02 15:40:02,731] {taskinstance.py:1017} INFO - 
+--------------------------------------------------------------------------------
+[2022-08-02 15:40:02,731] {taskinstance.py:1018} INFO - Starting attempt 1 of 1
+[2022-08-02 15:40:02,732] {taskinstance.py:1019} INFO - 
+--------------------------------------------------------------------------------
+[2022-08-02 15:40:02,757] {taskinstance.py:1038} INFO - Executing <Task(BashOperator): say_Hi> on 2022-08-02T15:30:00+00:00
+[2022-08-02 15:40:02,763] {standard_task_runner.py:51} INFO - Started process 17243 to run task
+[2022-08-02 15:40:02,770] {standard_task_runner.py:75} INFO - Running: ['airflow', 'tasks', 'run', 'pokea', 'say_Hi', '2022-08-02T15:30:00+00:00', '--job-id', '67', '--pool', 'default_pool', '--raw', '--subdir', 'DAGS_FOLDER/pokea.py', '--cfg-path', '/tmp/tmpw8659j6q']
+[2022-08-02 15:40:02,780] {standard_task_runner.py:76} INFO - Job 67: Subtask say_Hi
+[2022-08-02 15:40:02,892] {logging_mixin.py:103} INFO - Running <TaskInstance: pokea.say_Hi 2022-08-02T15:30:00+00:00 [running]> on host b4dcda255553
+[2022-08-02 15:40:03,007] {taskinstance.py:1232} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=airflow
+AIRFLOW_CTX_DAG_ID=pokea
+AIRFLOW_CTX_TASK_ID=say_Hi
+AIRFLOW_CTX_EXECUTION_DATE=2022-08-02T15:30:00+00:00
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2022-08-02T15:30:00+00:00
+[2022-08-02 15:40:03,008] {bash.py:135} INFO - Tmp dir root location: 
+ /tmp
+[2022-08-02 15:40:03,010] {bash.py:158} INFO - Running command: echo "Hi!!"
+[2022-08-02 15:40:03,024] {bash.py:169} INFO - Output:
+[2022-08-02 15:40:03,028] {bash.py:173} INFO - Hi!!
+[2022-08-02 15:40:03,029] {bash.py:177} INFO - Command exited with return code 0
+[2022-08-02 15:40:03,102] {taskinstance.py:1142} INFO - Marking task as SUCCESS. dag_id=pokea, task_id=say_Hi, execution_date=20220802T153000, start_date=20220802T154002, end_date=20220802T154003
+[2022-08-02 15:40:03,175] {taskinstance.py:1195} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2022-08-02 15:40:03,225] {local_task_job.py:118} INFO - Task exited with return code 0
