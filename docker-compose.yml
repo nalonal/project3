@@ -117,7 +117,7 @@ services:
     container_name: kafka-ui
     ports:
       - "10003:8080"
-    restart: always
+    restart: "no"
     environment:
       - KAFKA_CLUSTERS_0_NAME=kafka
       - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka:9092
