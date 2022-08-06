@@ -113,9 +113,10 @@ services:
       - gcp
   
   kowl:
+    container_name: sp3_kowl
     image: quay.io/cloudhut/kowl:v1.4.0
     restart: on-failure
-    hostname: sp3_kowl
+    hostname: kowl
     volumes:
       - ./config.yaml:/etc/kowl/config.yaml
     ports:
