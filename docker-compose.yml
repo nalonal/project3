@@ -113,6 +113,7 @@ services:
       - gcp
   kafdrop:
     image: obsidiandynamics/kafdrop
+    container_name: sp3_kafdrop
     restart: "no"
     ports:
       - "10003:9000"
