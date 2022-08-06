@@ -112,15 +112,18 @@ services:
     networks:
       - gcp
   
-  cmak:
-    image: ghcr.io/eshepelyuk/dckr/cmak-3.0.0.5:latest
-    restart: always
+  control-center:
+    image: provectuslabs/kafka-ui
+    container_name: control-center
+    depends_on:
+      - kafka
+      - zookeeper
     ports:
-      - "10003:9000"
+      - "10003:8080"
     environment:
-      ZK_HOSTS: zookeeper:2181
-    networks:
-      - gcp
+      KAFKA_CLUSTERS_0_NAME: 'smallproject3'
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: 'broker:29092'
+      KAFKA_CLUSTERS_0_ZOOKEEPER: 'zookeeper:2181'
 
 networks:
   gcp:
