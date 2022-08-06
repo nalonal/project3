@@ -123,6 +123,8 @@ services:
     entrypoint: ./kowl --config.filepath=/etc/kowl/config.yaml
     depends_on:
       - kafka
+    networks:
+      - gcp
 
 networks:
   gcp:
