@@ -36,6 +36,8 @@ services:
     ports:
       - 10001:8443
     restart: unless-stopped
+    networks:
+      - gcp
   postgres_airflow:
     container_name: sp3_postgres
     image: postgres:12
@@ -46,6 +48,8 @@ services:
       - POSTGRES_PORT=5432
     ports:
       - "5432:5432"
+    networks:
+      - gcp
 
   airflow-init:
     << : *airflow-common
@@ -70,18 +74,24 @@ services:
       - 10002:8080
     container_name: sp3_airflow_webserver
     restart: always
+    networks:
+      - gcp
 
   airflow-scheduler:
     << : *airflow-common
     command: airflow scheduler
     container_name: sp3_airflow_scheduler
     restart: always
+    networks:
+      - gcp
 
   zookeeper:
     image: wurstmeister/zookeeper:3.4.6
     container_name: sp3_zookeeper
     ports:
      - "2181:2181"
+    networks:
+      - gcp
   kafka:
     container_name: sp3_kafka
     image: wurstmeister/kafka
@@ -98,6 +108,8 @@ services:
       KAFKA_CREATE_TOPICS: "topic_test:1:1"
     volumes:
      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - gcp
 
   kafka-ui:
     image: provectuslabs/kafka-ui
@@ -109,3 +121,9 @@ services:
       - KAFKA_CLUSTERS_0_NAME=smallproject3
       - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka:9092
       - KAFKA_CLUSTERS_0_ZOOKEEPER=zookeeper:2181
+    networks:
+      - gcp
+
+networks:
+  gcp:
+    driver: bridge
