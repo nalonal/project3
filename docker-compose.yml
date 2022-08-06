@@ -111,47 +111,18 @@ services:
      - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - gcp
-  kafdrop:
-    image: obsidiandynamics/kafdrop
-    container_name: sp3_kafdrop
-    restart: "no"
+  
+  kowl:
+    image: quay.io/cloudhut/kowl:v1.4.0
+    restart: on-failure
+    hostname: kowl
+    volumes:
+      - ./config.yaml:/etc/kowl/config.yaml
     ports:
-      - "10003:9000"
-    environment:
-      KAFKA_BROKERCONNECT: "kafka:9092"
-      # JVM_OPTS: "-Xms16M -Xmx48M -Xss180K -XX:-TieredCompilation -XX:+UseStringDeduplication -noverify"
+      - "10003:8080"
+    entrypoint: ./kowl --config.filepath=/etc/kowl/config.yaml
     depends_on:
-      - "kafka"
-    networks:
-      - gcp
-
-  # kafka-ui:
-  #   image: provectuslabs/kafka-ui
-  #   container_name: kafka-ui
-  #   ports:
-  #     - "10003:8080"
-  #   restart: "no"
-  #   environment:
-  #     - KAFKA_CLUSTERS_0_NAME=kafka
-  #     - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka:9092
-  #     - KAFKA_CLUSTERS_0_ZOOKEEPER=zookeeper:2181
-  #     - KAFKA_CLUSTERS_0_READONLY=false
-  #   networks:
-  #     - gcp
-
-  # kafka-manager:
-  #   image: sheepkiller/kafka-manager:latest
-  #   ports:
-  #     - "10004:9000"
-  #   links:
-  #     - zookeeper
-  #     - kafka
-  #   environment:
-  #     ZK_HOSTS: zookeeper:2181
-  #     APPLICATION_SECRET: dataengineer
-  #     KM_ARGS: -Djava.net.preferIPv4Stack=true
-  #   networks:
-  #     - gcp
+      - kafka
 
 networks:
   gcp:
