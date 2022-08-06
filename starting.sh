@@ -10,3 +10,5 @@ curl -SL https://github.com/docker/compose/releases/download/v2.5.0/docker-compo
 chmod +x ~/.docker/cli-plugins/docker-compose
 sudo chmod 666 /var/run/docker.sock
 docker compose up -d
+sudo apt install python3-pip
+pip3 install kafka-python
