@@ -128,7 +128,7 @@ services:
   #     - gcp
   
   kowl:
-    image: quay.io/cloudhut/kowl:latest
+    image: quay.io/cloudhut/kowl:v1.4.0
     container_name: sp3_kowl
     environment:
       - KAFKA_BROKERS=kafka:9092
