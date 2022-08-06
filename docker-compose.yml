@@ -115,7 +115,7 @@ services:
   kowl:
     image: quay.io/cloudhut/kowl:v1.4.0
     restart: on-failure
-    hostname: kowl
+    hostname: sp3_kowl
     volumes:
       - ./config.yaml:/etc/kowl/config.yaml
     ports:
