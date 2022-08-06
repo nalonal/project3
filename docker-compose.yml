@@ -20,7 +20,7 @@ x-airflow-common:
 services:
   code-server:
     image: lscr.io/linuxserver/code-server:latest
-    container_name: code-server
+    container_name: sp3_code-server
     environment:
       - PUID=1000
       - PGID=1000
