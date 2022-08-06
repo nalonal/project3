@@ -125,6 +125,20 @@ services:
     networks:
       - gcp
 
+  kafka-manager:
+    image: sheepkiller/kafka-manager:latest
+    ports:
+      - "10004:9000"
+    links:
+      - zookeeper
+      - kafka
+    environment:
+      ZK_HOSTS: zookeeper:2181
+      APPLICATION_SECRET: dataengineer
+      KM_ARGS: -Djava.net.preferIPv4Stack=true
+    networks:
+      - gcp
+
 networks:
   gcp:
     driver: bridge
