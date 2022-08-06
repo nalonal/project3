@@ -111,34 +111,44 @@ services:
      - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - gcp
-
-  kafka-ui:
-    image: provectuslabs/kafka-ui
-    container_name: kafka-ui
-    ports:
-      - "10003:8080"
+  kafdrop:
+    image: obsidiandynamics/kafdrop
     restart: "no"
-    environment:
-      - KAFKA_CLUSTERS_0_NAME=kafka
-      - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka:9092
-      - KAFKA_CLUSTERS_0_ZOOKEEPER=zookeeper:2181
-      - KAFKA_CLUSTERS_0_READONLY=false
-    networks:
-      - gcp
-
-  kafka-manager:
-    image: sheepkiller/kafka-manager:latest
     ports:
-      - "10004:9000"
-    links:
-      - zookeeper
-      - kafka
+      - "10003:9000"
     environment:
-      ZK_HOSTS: zookeeper:2181
-      APPLICATION_SECRET: dataengineer
-      KM_ARGS: -Djava.net.preferIPv4Stack=true
-    networks:
-      - gcp
+      KAFKA_BROKERCONNECT: "kafka:29092"
+      JVM_OPTS: "-Xms16M -Xmx48M -Xss180K -XX:-TieredCompilation -XX:+UseStringDeduplication -noverify"
+    depends_on:
+      - "kafka"
+
+  # kafka-ui:
+  #   image: provectuslabs/kafka-ui
+  #   container_name: kafka-ui
+  #   ports:
+  #     - "10003:8080"
+  #   restart: "no"
+  #   environment:
+  #     - KAFKA_CLUSTERS_0_NAME=kafka
+  #     - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka:9092
+  #     - KAFKA_CLUSTERS_0_ZOOKEEPER=zookeeper:2181
+  #     - KAFKA_CLUSTERS_0_READONLY=false
+  #   networks:
+  #     - gcp
+
+  # kafka-manager:
+  #   image: sheepkiller/kafka-manager:latest
+  #   ports:
+  #     - "10004:9000"
+  #   links:
+  #     - zookeeper
+  #     - kafka
+  #   environment:
+  #     ZK_HOSTS: zookeeper:2181
+  #     APPLICATION_SECRET: dataengineer
+  #     KM_ARGS: -Djava.net.preferIPv4Stack=true
+  #   networks:
+  #     - gcp
 
 networks:
   gcp:
