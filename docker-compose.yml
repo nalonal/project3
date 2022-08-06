@@ -116,11 +116,12 @@ services:
     container_name: kafka-ui
     ports:
       - "10003:8080"
-    restart: always
+    restart: "no"
     environment:
       - KAFKA_CLUSTERS_0_NAME=smallproject3
       - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka:9092
       - KAFKA_CLUSTERS_0_ZOOKEEPER=zookeeper:2181
+      - KAFKA_CLUSTERS_0_READONLY=true
     networks:
       - gcp
 
