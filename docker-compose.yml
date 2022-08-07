@@ -16,6 +16,9 @@ x-airflow-common:
     - postgres_airflow
 
 services:
+  #############################################
+  #       INSTALLER VISUAL STUDIO CODE        #
+  #############################################
   code-server:
     image: lscr.io/linuxserver/code-server:latest
     container_name: sp3_code-server
@@ -38,6 +41,11 @@ services:
     restart: unless-stopped
     networks:
       - gcp
+
+  #############################################
+  #            INSTALLER AIRFLOW              #
+  #############################################
+
   postgres_airflow:
     container_name: sp3_postgres
     image: postgres:12
@@ -82,7 +90,7 @@ services:
     restart: always
 
   #############################################
-  #                 KAFKA                     #
+  #             INSTALLER KAFKA               #
   #############################################
   
   zookeeper:
@@ -195,8 +203,6 @@ services:
     networks:
       - gcp
   
-
-
 networks:
   gcp:
     driver: bridge
