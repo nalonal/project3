@@ -3,6 +3,9 @@ from datetime import datetime
 import datetime as dt
 from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
+from time import sleep
+from json import dumps
+from kafka import KafkaProducer
 
 producer = KafkaProducer(
     bootstrap_servers=['localhost:9092'],
