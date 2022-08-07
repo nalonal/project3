@@ -48,8 +48,6 @@ services:
       - POSTGRES_PORT=5432
     ports:
       - "5432:5432"
-    networks:
-      - gcp
 
   airflow-init:
     << : *airflow-common
@@ -74,16 +72,12 @@ services:
       - 10002:8080
     container_name: sp3_airflow_webserver
     restart: always
-    networks:
-      - gcp
 
   airflow-scheduler:
     << : *airflow-common
     command: airflow scheduler
     container_name: sp3_airflow_scheduler
     restart: always
-    networks:
-      - gcp
 
   #############################################
   #                 KAFKA                     #
