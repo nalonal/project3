@@ -12,6 +12,9 @@ x-airflow-common:
   volumes:
     - ./dags:/opt/airflow/dags
     - ./airflow/airflow.cfg:/opt/airlfow/airflow.cfg
+    - ./airflow/logs:/opt/airflow/logs
+    - ./airflow/plugins:/opt/airflow/plugins
+    - /var/run/docker.sock:/var/run/docker.sock
   depends_on:
     - postgres_airflow
 
