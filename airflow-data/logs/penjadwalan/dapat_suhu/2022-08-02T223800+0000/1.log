@@ -1,0 +1,84 @@
+[2022-08-03 00:47:00,598] {taskinstance.py:826} INFO - Dependencies all met for <TaskInstance: penjadwalan.dapat_suhu 2022-08-02T22:38:00+00:00 [queued]>
+[2022-08-03 00:47:00,634] {taskinstance.py:826} INFO - Dependencies all met for <TaskInstance: penjadwalan.dapat_suhu 2022-08-02T22:38:00+00:00 [queued]>
+[2022-08-03 00:47:00,635] {taskinstance.py:1017} INFO - 
+--------------------------------------------------------------------------------
+[2022-08-03 00:47:00,636] {taskinstance.py:1018} INFO - Starting attempt 1 of 1
+[2022-08-03 00:47:00,636] {taskinstance.py:1019} INFO - 
+--------------------------------------------------------------------------------
+[2022-08-03 00:47:00,652] {taskinstance.py:1038} INFO - Executing <Task(PythonOperator): dapat_suhu> on 2022-08-02T22:38:00+00:00
+[2022-08-03 00:47:00,660] {standard_task_runner.py:51} INFO - Started process 30096 to run task
+[2022-08-03 00:47:00,666] {standard_task_runner.py:75} INFO - Running: ['airflow', 'tasks', 'run', 'penjadwalan', 'dapat_suhu', '2022-08-02T22:38:00+00:00', '--job-id', '366', '--pool', 'default_pool', '--raw', '--subdir', 'DAGS_FOLDER/penjadwalan.py', '--cfg-path', '/tmp/tmpsdl2dvsy']
+[2022-08-03 00:47:00,670] {standard_task_runner.py:76} INFO - Job 366: Subtask dapat_suhu
+[2022-08-03 00:47:00,804] {logging_mixin.py:103} INFO - Running <TaskInstance: penjadwalan.dapat_suhu 2022-08-02T22:38:00+00:00 [running]> on host b4dcda255553
+[2022-08-03 00:47:00,908] {taskinstance.py:1232} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=airflow
+AIRFLOW_CTX_DAG_ID=penjadwalan
+AIRFLOW_CTX_TASK_ID=dapat_suhu
+AIRFLOW_CTX_EXECUTION_DATE=2022-08-02T22:38:00+00:00
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2022-08-02T22:38:00+00:00
+[2022-08-03 00:47:43,267] {taskinstance.py:1396} ERROR - HTTPSConnectionPool(host='api.openweathermap.org', port=443): Max retries exceeded with url: /data/2.5/weather?q=Bali&appid=d5f11f21e3d4617bc66950d463fdeb4b (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7feefbd15940>: Failed to establish a new connection: [Errno 111] Connection refused',))
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.6/site-packages/urllib3/connection.py", line 160, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw
+  File "/home/airflow/.local/lib/python3.6/site-packages/urllib3/util/connection.py", line 84, in create_connection
+    raise err
+  File "/home/airflow/.local/lib/python3.6/site-packages/urllib3/util/connection.py", line 74, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.6/site-packages/urllib3/connectionpool.py", line 677, in urlopen
+    chunked=chunked,
+  File "/home/airflow/.local/lib/python3.6/site-packages/urllib3/connectionpool.py", line 381, in _make_request
+    self._validate_conn(conn)
+  File "/home/airflow/.local/lib/python3.6/site-packages/urllib3/connectionpool.py", line 978, in _validate_conn
+    conn.connect()
+  File "/home/airflow/.local/lib/python3.6/site-packages/urllib3/connection.py", line 309, in connect
+    conn = self._new_conn()
+  File "/home/airflow/.local/lib/python3.6/site-packages/urllib3/connection.py", line 172, in _new_conn
+    self, "Failed to establish a new connection: %s" % e
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPSConnection object at 0x7feefbd15940>: Failed to establish a new connection: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.6/site-packages/requests/adapters.py", line 449, in send
+    timeout=timeout
+  File "/home/airflow/.local/lib/python3.6/site-packages/urllib3/connectionpool.py", line 727, in urlopen
+    method, url, error=e, _pool=self, _stacktrace=sys.exc_info()[2]
+  File "/home/airflow/.local/lib/python3.6/site-packages/urllib3/util/retry.py", line 446, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='api.openweathermap.org', port=443): Max retries exceeded with url: /data/2.5/weather?q=Bali&appid=d5f11f21e3d4617bc66950d463fdeb4b (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7feefbd15940>: Failed to establish a new connection: [Errno 111] Connection refused',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/taskinstance.py", line 1086, in _run_raw_task
+    self._prepare_and_execute_task_with_callbacks(context, task)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/taskinstance.py", line 1260, in _prepare_and_execute_task_with_callbacks
+    result = self._execute_task(context, task_copy)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/taskinstance.py", line 1300, in _execute_task
+    result = task_copy.execute(context=context)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/operators/python.py", line 117, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/operators/python.py", line 128, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/penjadwalan.py", line 30, in panggilsuhu
+    print(getdata(kota))
+  File "/opt/airflow/dags/penjadwalan.py", line 9, in getdata
+    hasil = requests.post("https://api.openweathermap.org/data/2.5/weather?q="+namakota+"&appid=d5f11f21e3d4617bc66950d463fdeb4b")
+  File "/home/airflow/.local/lib/python3.6/site-packages/requests/api.py", line 119, in post
+    return request('post', url, data=data, json=json, **kwargs)
+  File "/home/airflow/.local/lib/python3.6/site-packages/requests/api.py", line 61, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/home/airflow/.local/lib/python3.6/site-packages/requests/sessions.py", line 530, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/airflow/.local/lib/python3.6/site-packages/requests/sessions.py", line 643, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/airflow/.local/lib/python3.6/site-packages/requests/adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.openweathermap.org', port=443): Max retries exceeded with url: /data/2.5/weather?q=Bali&appid=d5f11f21e3d4617bc66950d463fdeb4b (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7feefbd15940>: Failed to establish a new connection: [Errno 111] Connection refused',))
+[2022-08-03 00:47:43,282] {taskinstance.py:1440} INFO - Marking task as FAILED. dag_id=penjadwalan, task_id=dapat_suhu, execution_date=20220802T223800, start_date=20220803T004700, end_date=20220803T004743
+[2022-08-03 00:47:43,382] {local_task_job.py:118} INFO - Task exited with return code 1

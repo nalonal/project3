@@ -11,40 +11,13 @@ x-airflow-common:
     - AIRFLOW__CORE__LOGGING_LEVEL=INFO
   volumes:
     - ./dags:/opt/airflow/dags
-    - ./airflow/airflow.cfg:/opt/airlfow/airflow.cfg
-    - ./airflow/logs:/opt/airflow/logs
-    - ./airflow/plugins:/opt/airflow/plugins
-    - /var/run/docker.sock:/var/run/docker.sock
+    - ./airflow-data/logs:/opt/airflow/logs
+    - ./airflow-data/plugins:/opt/airflow/plugins
+    - ./airflow-data/airflow.cfg:/opt/airlfow/airflow.cfg
   depends_on:
     - postgres_airflow
 
 services:
-  #############################################
-  #       INSTALLER VISUAL STUDIO CODE        #
-  #############################################
-  code-server:
-    image: lscr.io/linuxserver/code-server:latest
-    container_name: sp3_code-server
-    env_file:
-      - .env
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/London
-      - PASSWORD=${CODE_STUDIO_PASSWORD} #optional
-      # - HASHED_PASSWORD= #optional
-      # - SUDO_PASSWORD=password #optional
-      # - SUDO_PASSWORD_HASH= #optional
-      # - PROXY_DOMAIN=code-server.my.domain #optional
-      - DEFAULT_WORKSPACE=/home #optional
-    volumes:
-      - ../project3:/home
-    ports:
-      - 10001:8443
-    restart: unless-stopped
-    networks:
-      - gcp
-
   #############################################
   #            INSTALLER AIRFLOW              #
   #############################################
@@ -203,6 +176,31 @@ services:
       KAFKA_CLUSTERS_0_SCHEMAREGISTRY: 'http://schema-registry:8081'
       KAFKA_CLUSTERS_0_KAFKACONNECT_0_NAME: 'MyDataConnector'
       KAFKA_CLUSTERS_0_KAFKACONNECT_0_ADDRESS: 'http://connect:8083'
+    networks:
+      - gcp
+    #############################################
+  #       INSTALLER VISUAL STUDIO CODE        #
+  #############################################
+  code-server:
+    image: lscr.io/linuxserver/code-server:latest
+    container_name: sp3_code-server
+    env_file:
+      - .env
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+      - PASSWORD=${CODE_STUDIO_PASSWORD} #optional
+      # - HASHED_PASSWORD= #optional
+      # - SUDO_PASSWORD=password #optional
+      # - SUDO_PASSWORD_HASH= #optional
+      # - PROXY_DOMAIN=code-server.my.domain #optional
+      - DEFAULT_WORKSPACE=/home #optional
+    volumes:
+      - ../project3:/home
+    ports:
+      - 10001:8443
+    restart: unless-stopped
     networks:
       - gcp
   

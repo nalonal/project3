@@ -1,0 +1,22 @@
+[2022-08-02 17:00:16,416] {taskinstance.py:826} INFO - Dependencies all met for <TaskInstance: my_simple_dag.respond 2022-08-02T16:50:00+00:00 [queued]>
+[2022-08-02 17:00:16,468] {taskinstance.py:826} INFO - Dependencies all met for <TaskInstance: my_simple_dag.respond 2022-08-02T16:50:00+00:00 [queued]>
+[2022-08-02 17:00:16,472] {taskinstance.py:1017} INFO - 
+--------------------------------------------------------------------------------
+[2022-08-02 17:00:16,473] {taskinstance.py:1018} INFO - Starting attempt 1 of 1
+[2022-08-02 17:00:16,474] {taskinstance.py:1019} INFO - 
+--------------------------------------------------------------------------------
+[2022-08-02 17:00:16,507] {taskinstance.py:1038} INFO - Executing <Task(PythonOperator): respond> on 2022-08-02T16:50:00+00:00
+[2022-08-02 17:00:16,524] {standard_task_runner.py:51} INFO - Started process 473 to run task
+[2022-08-02 17:00:16,534] {standard_task_runner.py:75} INFO - Running: ['airflow', 'tasks', 'run', 'my_simple_dag', 'respond', '2022-08-02T16:50:00+00:00', '--job-id', '170', '--pool', 'default_pool', '--raw', '--subdir', 'DAGS_FOLDER/my_simple_dag.py', '--cfg-path', '/tmp/tmp58yw1q9q']
+[2022-08-02 17:00:16,542] {standard_task_runner.py:76} INFO - Job 170: Subtask respond
+[2022-08-02 17:00:16,721] {logging_mixin.py:103} INFO - Running <TaskInstance: my_simple_dag.respond 2022-08-02T16:50:00+00:00 [running]> on host b4dcda255553
+[2022-08-02 17:00:16,865] {taskinstance.py:1232} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=airflow
+AIRFLOW_CTX_DAG_ID=my_simple_dag
+AIRFLOW_CTX_TASK_ID=respond
+AIRFLOW_CTX_EXECUTION_DATE=2022-08-02T16:50:00+00:00
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2022-08-02T16:50:00+00:00
+[2022-08-02 17:00:16,867] {python.py:118} INFO - Done. Returned value was: Greet Responded Again
+[2022-08-02 17:00:16,961] {taskinstance.py:1142} INFO - Marking task as SUCCESS. dag_id=my_simple_dag, task_id=respond, execution_date=20220802T165000, start_date=20220802T170016, end_date=20220802T170016
+[2022-08-02 17:00:17,036] {taskinstance.py:1195} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2022-08-02 17:00:17,093] {local_task_job.py:118} INFO - Task exited with return code 0
