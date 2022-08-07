@@ -11,9 +11,9 @@ x-airflow-common:
     - AIRFLOW__CORE__LOGGING_LEVEL=INFO
   volumes:
     - ./dags:/opt/airflow/dags
-    - ./airflow-data/logs:/opt/airflow/logs
-    - ./airflow-data/plugins:/opt/airflow/plugins
-    - ./airflow-data/airflow.cfg:/opt/airlfow/airflow.cfg
+    # - ./airflow-data/logs:/opt/airflow/logs
+    # - ./airflow-data/plugins:/opt/airflow/plugins
+    # - ./airflow-data/airflow.cfg:/opt/airlfow/airflow.cfg
   depends_on:
     - postgres_airflow
 
@@ -30,9 +30,9 @@ services:
       # - SUDO_PASSWORD=password #optional
       # - SUDO_PASSWORD_HASH= #optional
       # - PROXY_DOMAIN=code-server.my.domain #optional
-      # - DEFAULT_WORKSPACE=/home #optional
+      - DEFAULT_WORKSPACE=/home #optional
     volumes:
-      - ../:/home
+      - ../project3:/home
     ports:
       - 10001:8443
     restart: unless-stopped
