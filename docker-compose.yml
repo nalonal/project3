@@ -11,8 +11,6 @@ x-airflow-common:
     - AIRFLOW__CORE__LOGGING_LEVEL=INFO
   volumes:
     - ./dags:/opt/airflow/dags
-    # - ./airflow-data/logs:/opt/airflow/logs
-    # - ./airflow-data/plugins:/opt/airflow/plugins
     # - ./airflow-data/airflow.cfg:/opt/airlfow/airflow.cfg
   depends_on:
     - postgres_airflow
@@ -21,11 +19,13 @@ services:
   code-server:
     image: lscr.io/linuxserver/code-server:latest
     container_name: sp3_code-server
+    env_file:
+      - .env
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/London
-      - PASSWORD=password #optional
+      - PASSWORD=${CODE_STUDIO_PASSWORD} #optional
       # - HASHED_PASSWORD= #optional
       # - SUDO_PASSWORD=password #optional
       # - SUDO_PASSWORD_HASH= #optional
@@ -53,16 +53,18 @@ services:
     << : *airflow-common
     container_name: sp3_airflow_init
     entrypoint: /bin/bash
+    env_file:
+      - .env
     command:
       - -c
       - airflow users list || ( airflow db init &&
         airflow users create
           --role Admin
-          --username dataengineer
-          --password dataengineer
-          --email airflow@airflow.com
-          --firstname airflow
-          --lastname airflow )
+          --username ${AIRFLOW_USERNAME}
+          --password ${AIRFLOW_PASSWORD}
+          --email ${AIRFLOW_EMAIL}
+          --firstname ${AIRFLOW_FIRSTNAME}
+          --lastname ${AIRFLOW_LASTNAME} )
     restart: on-failure
 
   airflow-webserver:
@@ -175,6 +177,8 @@ services:
   control-center:
     image: provectuslabs/kafka-ui
     container_name: sp3_control-center
+    env_file:
+      - .env
     depends_on:
       - broker
       - schema-registry
@@ -182,7 +186,7 @@ services:
     ports:
       - "10003:8080"
     environment:
-      KAFKA_CLUSTERS_0_NAME: 'Small Project 3'
+      KAFKA_CLUSTERS_0_NAME: ${KAFKA_CLUSTERS_NAME}
       KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: 'broker:29092'
       KAFKA_CLUSTERS_0_ZOOKEEPER: 'zookeeper:2181'
       KAFKA_CLUSTERS_0_SCHEMAREGISTRY: 'http://schema-registry:8081'
