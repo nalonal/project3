@@ -30,7 +30,7 @@ services:
       # - SUDO_PASSWORD=password #optional
       # - SUDO_PASSWORD_HASH= #optional
       # - PROXY_DOMAIN=code-server.my.domain #optional
-      - DEFAULT_WORKSPACE=/home #optional
+      # - DEFAULT_WORKSPACE=/home #optional
     volumes:
       - ../:/home
     ports:
