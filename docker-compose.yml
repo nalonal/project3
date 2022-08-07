@@ -92,7 +92,7 @@ services:
   zookeeper:
     image: confluentinc/cp-zookeeper:7.0.1
     hostname: zookeeper
-    container_name: zookeeper
+    container_name: sp3_zookeeper
     ports:
       - "2181:2181"
     environment:
@@ -104,7 +104,7 @@ services:
   broker:
     image: confluentinc/cp-kafka:7.0.1
     hostname: broker
-    container_name: broker
+    container_name: sp3_broker
     depends_on:
       - zookeeper
     ports:
@@ -128,7 +128,7 @@ services:
   schema-registry:
     image: confluentinc/cp-schema-registry:7.0.1
     hostname: schema-registry
-    container_name: schema-registry
+    container_name: sp3_schema-registry
     depends_on:
       - broker
     ports:
@@ -143,7 +143,7 @@ services:
   connect:
     image: ryuk4/cp-kafka-connect:6.2.2
     hostname: connect
-    container_name: connect
+    container_name: sp3_connect
     depends_on:
       - zookeeper
       - broker
@@ -180,7 +180,7 @@ services:
 
   control-center:
     image: provectuslabs/kafka-ui
-    container_name: control-center
+    container_name: sp3_control-center
     depends_on:
       - broker
       - schema-registry
@@ -188,11 +188,11 @@ services:
     ports:
       - "10003:8080"
     environment:
-      KAFKA_CLUSTERS_0_NAME: 'MataElangLab'
+      KAFKA_CLUSTERS_0_NAME: 'Small Project 3'
       KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: 'broker:29092'
       KAFKA_CLUSTERS_0_ZOOKEEPER: 'zookeeper:2181'
       KAFKA_CLUSTERS_0_SCHEMAREGISTRY: 'http://schema-registry:8081'
-      KAFKA_CLUSTERS_0_KAFKACONNECT_0_NAME: 'MataElangLabConnector'
+      KAFKA_CLUSTERS_0_KAFKACONNECT_0_NAME: 'MyDataConnector'
       KAFKA_CLUSTERS_0_KAFKACONNECT_0_ADDRESS: 'http://connect:8083'
     networks:
       - gcp
